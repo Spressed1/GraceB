@@ -1,0 +1,130 @@
+.services {
+  background: var(--color-light-bg);
+  padding: 4rem 0;
+  position: relative;
+  overflow: hidden;
+}
+
+.services::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: repeating-linear-gradient(135deg, rgba(255,255,255,0.01) 0 2px, transparent 2px 40px);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.services__container {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 1rem;
+  position: relative;
+  z-index: 1;
+}
+
+.services__title {
+  text-align: center;
+  color: var(--color-red);
+  font-size: 2rem;
+  font-weight: 800;
+  margin-bottom: 2.5rem;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+.services__grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: stretch;
+  gap: 1.5rem;
+}
+
+.services__card {
+  flex: 1 ;
+  max-width: 350px;
+  min-width: 260px;
+  background: var(--color-black);
+  border-radius: 18px;
+  box-shadow: 0 2px 16px rgba(230,0,0,0.10);
+  padding: 1.7rem 1.2rem;
+  text-align: left;
+  transition: box-shadow 0.25s, transform 0.25s, border-color 0.25s;
+  border: 2px solid var(--color-border);
+  color: var(--color-white);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  min-height: 180px;
+  height: 100%;
+  position: relative;
+  &:hover {
+    box-shadow: 0 8px 32px rgba(230,0,0,0.22);
+    transform: translateY(-8px) scale(1.03);
+    border-color: var(--color-red);
+  }
+}
+
+.services__card-content {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.services__icon {
+  margin-bottom: 1.1rem;
+  align-self: flex-start;
+  width: 32px;
+  height: 32px;
+}
+
+.services__card-title {
+  color: var(--color-red);
+  font-size: 1.15rem;
+  font-weight: 700;
+  margin-bottom: 1.1rem;
+  letter-spacing: 0.5px;
+}
+
+.services__card-desc {
+  color: #e0e0e0;
+  font-size: 1rem;
+  line-height: 1.6;
+  margin-top: auto;
+}
+
+/* Center the last card if the row is not full */
+.services__card:nth-child(5) {
+  grid-column: 2 / 3;
+}
+
+@media (max-width: 900px) {
+  .services__card {
+    min-width: 220px;
+    padding: 1.2rem 0.7rem;
+    min-height: 140px;
+  }
+}
+
+@media (max-width: 700px) {
+  .services__container {
+    padding: 0 0.5rem;
+  }
+  .services__grid {
+    flex-direction: column;
+    gap: 2.2rem;
+  }
+  .services__card {
+    max-width: 100%;
+    min-width: 0;
+    min-height: unset;
+    height: auto;
+  }
+  .services__card-title {
+    margin-bottom: 0.5rem;
+  }
+  .services__card-desc {
+    font-size: 1.08rem;
+    margin-top: 0;
+  }
+} 

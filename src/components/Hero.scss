@@ -1,0 +1,101 @@
+.hero {
+  position: relative;
+  width: 100vw;
+  min-height: 100vh;
+  background: url('https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1500&q=80') center/cover no-repeat;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.hero__overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(120deg, rgba(24,24,24,0.92) 60%, rgba(230,0,0,0.85) 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.hero__content {
+  position: relative;
+  z-index: 2;
+  text-align: left;
+  color: var(--color-white);
+  max-width: 800px;
+  margin: 0 2rem;
+  padding: 3rem 2rem;
+}
+
+.hero__title {
+  font-size: 3.5rem;
+  font-weight: 800;
+  margin-bottom: 2.5rem;
+  line-height: 1.1;
+  text-shadow: 0 4px 32px rgba(0,0,0,0.5);
+  color: var(--color-white);
+}
+
+.hero__desc {
+  color: #cccccc;
+  font-size: 1.05rem;
+  font-weight: 500;
+  margin-bottom: 2rem;
+  margin-top: -0.5rem;
+  max-width: 600px;
+  line-height: 1.5;
+}
+
+.hero__cta {
+  background: var(--color-red);
+  color: var(--color-white);
+  padding: 0.7em 2em;
+  border-radius: 30px;
+  font-weight: 700;
+  font-size: 1.1rem;
+  text-decoration: none;
+  transition: background 0.2s, color 0.2s, box-shadow 0.2s;
+  cursor: pointer;
+  border: none;
+  box-shadow: 0 4px 24px rgba(230,0,0,0.15);
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  margin-top: 0.5rem;
+  &:hover {
+    background: var(--color-black);
+    color: var(--color-red);
+    box-shadow: 0 6px 32px rgba(230,0,0,0.25);
+  }
+}
+
+@media (max-width: 900px) {
+  .hero__title {
+    font-size: 2.2rem;
+  }
+  .hero__content {
+    padding: 2rem 1rem;
+  }
+}
+
+@media (max-width: 700px) {
+  .hero {
+    min-height: 60vh;
+    padding: 1.5rem 0;
+  }
+  .hero__title {
+    font-size: 2rem;
+    padding: 0 0.2rem;
+  }
+  .hero__content {
+    padding: 1.2rem 0.5rem;
+  }
+  .hero__cta {
+    font-size: 1rem;
+    padding: 0.6em 1.2em;
+  }
+  .hero__desc {
+    font-size: 0.95rem;
+    margin-bottom: 1.2rem;
+    margin-top: 0.2rem;
+  }
+} 
