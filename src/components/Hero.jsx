@@ -29,22 +29,11 @@ export default function Hero() {
           viewport={{ once: true, amount: 0.7 }}
         >
           <motion.h1 className="hero__title" variants={itemVariants}>
-            Trusted Local Contractors in Hertfordshire
+            Trusted Local Contractors in St Albans
           </motion.h1>
           <motion.p className="hero__desc" variants={itemVariants}>
             Grace Contractors is your reliable partner for renovations, extensions, repairs, and all general building work in Hertfordshire. Years of experience, quality workmanship, and a commitment to your satisfaction.
           </motion.p>
-          <motion.div variants={itemVariants}>
-            <ScrollLink
-              to="contact"
-              smooth={true}
-              duration={500}
-              offset={-80}
-              className="hero__cta"
-            >
-              Get a Free Quote
-            </ScrollLink>
-          </motion.div>
         </motion.div>
       </div>
     </section>

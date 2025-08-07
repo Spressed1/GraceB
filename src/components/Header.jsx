@@ -1,12 +1,14 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Link as ScrollLink } from 'react-scroll';
 import { motion, AnimatePresence } from 'framer-motion';
+import logo from '../assets/logo.png';
 import './Header.scss';
 
 const navLinks = [
   { label: 'Home', to: 'hero' },
   { label: 'About', to: 'about' },
   { label: 'Services', to: 'services' },
+  { label: 'Gallery', to: 'gallery' },
   { label: 'Testimonials', to: 'testimonials' },
   { label: 'Contact', to: 'contact' },
 ];
@@ -42,8 +44,11 @@ export default function Header() {
     <header className={headerClass} ref={headerRef}>
       <div className="header__row">
         <div className="header__logo">
-          <span className="header__logo-main">Grace</span>
-          <span className="header__logo-sub"> <span className="desktop-only">Contractors</span></span>
+          <img 
+            src={logo} 
+            alt="Grace Building Contractors" 
+            className="header__logo-img"
+          />
         </div>
         {/* Hamburger for mobile */}
         <motion.button
@@ -76,15 +81,7 @@ export default function Header() {
           </ScrollLink>
         ))}
       </nav>
-      <ScrollLink
-        to="contact"
-        smooth={true}
-        duration={500}
-        offset={-80}
-        className="header__cta header__cta--desktop"
-      >
-        Free Quote
-      </ScrollLink>
+      {/* Removed Free Quote button for desktop */}
       {/* Animated Mobile Menu */}
       <AnimatePresence>
         {menuOpen && (
@@ -121,16 +118,7 @@ export default function Header() {
                 </li>
               ))}
             </ul>
-            <ScrollLink
-              to="contact"
-              smooth={true}
-              duration={500}
-              offset={-80}
-              className="header__cta header__cta--mobile"
-              onClick={() => setMenuOpen(false)}
-            >
-              Free Quote
-            </ScrollLink>
+            {/* Removed Free Quote button for mobile */}
           </motion.nav>
         )}
       </AnimatePresence>

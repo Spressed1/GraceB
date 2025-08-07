@@ -97,6 +97,95 @@
   font-weight: 500;
 }
 
+.about__container--single {
+  max-width: 700px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.about__hero-img {
+  width: 100%;
+  max-width: 420px;
+  height: auto;
+  border-radius: 18px;
+  box-shadow: 0 4px 32px rgba(24,24,24,0.18);
+  margin-bottom: 2.2rem;
+  object-fit: cover;
+}
+
+.about__single-text {
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.about__single-text .about__title {
+  margin-bottom: 1.5rem;
+  margin-top: 0;
+}
+
+.about__single-text p {
+  color: #e0e0e0;
+  font-size: 1.15rem;
+  line-height: 1.7;
+  font-weight: 500;
+}
+
+.about__container--side {
+  max-width: 950px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  gap: 3rem;
+  background: linear-gradient(135deg, #232323 60%, #181818 100%);
+  border-radius: 18px;
+  box-shadow: 0 4px 32px rgba(24,24,24,0.10);
+  padding: 2.5rem 2rem;
+}
+
+.about__side-img-wrap {
+  flex: 0 0 340px;
+  max-width: 340px;
+  min-width: 220px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.about__side-img {
+  width: 100%;
+  height: 320px;
+  object-fit: cover;
+  border-radius: 14px;
+  box-shadow: 0 4px 32px rgba(24,24,24,0.18);
+  background: #232323;
+}
+
+.about__side-text {
+  flex: 1 1 0;
+  min-width: 0;
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.about__side-text .about__title {
+  margin-bottom: 1.3rem;
+  margin-top: 0;
+  text-align: left;
+}
+
+.about__side-text p {
+  color: #e0e0e0;
+  font-size: 1.15rem;
+  line-height: 1.7;
+  font-weight: 500;
+  margin: 0;
+}
+
 @media (max-width: 1100px) {
   .about__container {
     max-width: 98vw;
@@ -127,6 +216,43 @@
   }
   .about__text-wrap {
     padding: 1.5rem 1.1rem;
+  }
+  .about__container--side {
+    flex-direction: column;
+    gap: 1.5rem;
+    padding: 1.5rem 0.5rem;
+  }
+  .about__side-img-wrap {
+    max-width: 100%;
+    min-width: 0;
+  }
+  .about__side-img {
+    width: 100%;
+    height: 220px;
+    margin-bottom: 0.5rem;
+  }
+  .about__side-text {
+    text-align: center;
+  }
+  .about__side-text .about__title {
+    text-align: center;
+  }
+}
+
+@media (max-width: 700px) {
+  .about__container--single {
+    max-width: 98vw;
+    padding: 0 1rem;
+  }
+  .about__hero-img {
+    max-width: 100%;
+    margin-bottom: 1.2rem;
+  }
+  .about__single-text {
+    max-width: 98vw;
+  }
+  .about__single-text p {
+    font-size: 1rem;
   }
 }
 

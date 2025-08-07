@@ -1,0 +1,380 @@
+import React, { useState, useEffect, useRef } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
+import './Gallery.scss';
+
+// Placeholder images - you can replace these with your actual project photos
+const galleryImages = [
+  {
+    id: 1,
+    src: 'https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&w=600&q=80',
+    alt: 'Roofing project completed',
+  },
+  {
+    id: 2,
+    src: 'https://images.unsplash.com/photo-1586023492125-27b2c045efd7?auto=format&fit=crop&w=600&q=80',
+    alt: 'House extension work',
+  },
+  {
+    id: 3,
+    src: 'https://images.unsplash.com/photo-1621905251189-08b45d6a269e?auto=format&fit=crop&w=600&q=80',
+    alt: 'Electrical installation',
+  },
+  {
+    id: 4,
+    src: 'https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&w=600&q=80',
+    alt: 'Kitchen renovation',
+  },
+  {
+    id: 5,
+    src: 'https://images.unsplash.com/photo-1586023492125-27b2c045efd7?auto=format&fit=crop&w=600&q=80',
+    alt: 'Bathroom remodel',
+  },
+  {
+    id: 6,
+    src: 'https://images.unsplash.com/photo-1621905251189-08b45d6a269e?auto=format&fit=crop&w=600&q=80',
+    alt: 'Property maintenance work',
+  },
+  {
+    id: 7,
+    src: 'https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&w=600&q=80',
+    alt: 'Roof repair project',
+  },
+  {
+    id: 8,
+    src: 'https://images.unsplash.com/photo-1586023492125-27b2c045efd7?auto=format&fit=crop&w=600&q=80',
+    alt: 'Home extension completed',
+  },
+  {
+    id: 9,
+    src: 'https://images.unsplash.com/photo-1621905251189-08b45d6a269e?auto=format&fit=crop&w=600&q=80',
+    alt: 'Electrical upgrade work',
+  },
+  {
+    id: 10,
+    src: 'https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&w=600&q=80',
+    alt: 'Kitchen renovation completed',
+  },
+  {
+    id: 11,
+    src: 'https://images.unsplash.com/photo-1586023492125-27b2c045efd7?auto=format&fit=crop&w=600&q=80',
+    alt: 'Bathroom renovation project',
+  },
+  {
+    id: 12,
+    src: 'https://images.unsplash.com/photo-1621905251189-08b45d6a269e?auto=format&fit=crop&w=600&q=80',
+    alt: 'Property maintenance service',
+  }
+];
+
+export default function Gallery() {
+  const [currentSlide, setCurrentSlide] = useState(0);
+  const [selectedImage, setSelectedImage] = useState(null);
+  const [isAutoPlaying, setIsAutoPlaying] = useState(true);
+  const [isFullscreen, setIsFullscreen] = useState(false);
+  const [touchStart, setTouchStart] = useState(null);
+  const [touchEnd, setTouchEnd] = useState(null);
+  const [loadedImages, setLoadedImages] = useState(new Set());
+  
+  const carouselRef = useRef(null);
+  const autoPlayInterval = useRef(null);
+
+  const slidesPerView = 3;
+  const totalSlides = Math.ceil(galleryImages.length / slidesPerView);
+
+  // Auto-play functionality
+  useEffect(() => {
+    if (isAutoPlaying && totalSlides > 1) {
+      autoPlayInterval.current = setInterval(() => {
+        setCurrentSlide((prev) => (prev + 1) % totalSlides);
+      }, 5000);
+    }
+
+    return () => {
+      if (autoPlayInterval.current) {
+        clearInterval(autoPlayInterval.current);
+      }
+    };
+  }, [isAutoPlaying, totalSlides]);
+
+  // Keyboard navigation
+  useEffect(() => {
+    const handleKeyDown = (e) => {
+      if (selectedImage) {
+        if (e.key === 'Escape') {
+          setSelectedImage(null);
+          setIsFullscreen(false);
+        }
+        if (e.key === 'ArrowLeft') {
+          const currentIndex = galleryImages.findIndex(img => img.id === selectedImage.id);
+          const prevIndex = (currentIndex - 1 + galleryImages.length) % galleryImages.length;
+          setSelectedImage(galleryImages[prevIndex]);
+        }
+        if (e.key === 'ArrowRight') {
+          const currentIndex = galleryImages.findIndex(img => img.id === selectedImage.id);
+          const nextIndex = (currentIndex + 1) % galleryImages.length;
+          setSelectedImage(galleryImages[nextIndex]);
+        }
+        if (e.key === 'f' || e.key === 'F') {
+          toggleFullscreen();
+        }
+      } else {
+        if (e.key === 'ArrowLeft') {
+          prevSlide();
+        }
+        if (e.key === 'ArrowRight') {
+          nextSlide();
+        }
+      }
+    };
+
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [selectedImage, isFullscreen]);
+
+  // Touch/swipe functionality
+  const handleTouchStart = (e) => {
+    setTouchStart(e.targetTouches[0].clientX);
+  };
+
+  const handleTouchMove = (e) => {
+    setTouchEnd(e.targetTouches[0].clientX);
+  };
+
+  const handleTouchEnd = () => {
+    if (!touchStart || !touchEnd) return;
+    
+    const distance = touchStart - touchEnd;
+    const isLeftSwipe = distance > 50;
+    const isRightSwipe = distance < -50;
+
+    if (isLeftSwipe) {
+      nextSlide();
+    }
+    if (isRightSwipe) {
+      prevSlide();
+    }
+
+    setTouchStart(null);
+    setTouchEnd(null);
+  };
+
+  // Image loading
+  const handleImageLoad = (imageId) => {
+    setLoadedImages(prev => new Set([...prev, imageId]));
+  };
+
+  const nextSlide = () => {
+    setCurrentSlide((prev) => (prev + 1) % totalSlides);
+  };
+
+  const prevSlide = () => {
+    setCurrentSlide((prev) => (prev - 1 + totalSlides) % totalSlides);
+  };
+
+  const getCurrentSlideImages = () => {
+    const startIndex = currentSlide * slidesPerView;
+    return galleryImages.slice(startIndex, startIndex + slidesPerView);
+  };
+
+  const toggleFullscreen = () => {
+    setIsFullscreen(!isFullscreen);
+  };
+
+  const openModal = (image) => {
+    setSelectedImage(image);
+    setIsAutoPlaying(false); // Pause auto-play when modal opens
+  };
+
+  const closeModal = () => {
+    setSelectedImage(null);
+    setIsFullscreen(false);
+    setIsAutoPlaying(true); // Resume auto-play when modal closes
+  };
+
+  const navigateModal = (direction) => {
+    if (!selectedImage) return;
+    
+    const currentIndex = galleryImages.findIndex(img => img.id === selectedImage.id);
+    let newIndex;
+    
+    if (direction === 'next') {
+      newIndex = (currentIndex + 1) % galleryImages.length;
+    } else {
+      newIndex = (currentIndex - 1 + galleryImages.length) % galleryImages.length;
+    }
+    
+    setSelectedImage(galleryImages[newIndex]);
+  };
+
+  return (
+    <section className="gallery" id="gallery">
+      <div className="gallery__container">
+        <h2 className="gallery__title">Our Work Gallery</h2>
+        <p className="gallery__subtitle">Explore our completed projects and see the quality of our work</p>
+        
+        {/* Carousel Container */}
+        <div 
+          className="gallery__carousel-container"
+          ref={carouselRef}
+          onTouchStart={handleTouchStart}
+          onTouchMove={handleTouchMove}
+          onTouchEnd={handleTouchEnd}
+          onMouseEnter={() => setIsAutoPlaying(false)}
+          onMouseLeave={() => setIsAutoPlaying(true)}
+        >
+          {/* Navigation Buttons */}
+          {totalSlides > 1 && (
+            <>
+              <button 
+                className="gallery__nav-btn gallery__nav-btn--prev"
+                onClick={prevSlide}
+                aria-label="Previous slide"
+              >
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                  <path d="M15 18L9 12L15 6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                </svg>
+              </button>
+              
+              <button 
+                className="gallery__nav-btn gallery__nav-btn--next"
+                onClick={nextSlide}
+                aria-label="Next slide"
+              >
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                  <path d="M9 18L15 12L9 6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                </svg>
+              </button>
+            </>
+          )}
+
+          {/* Carousel */}
+          <div className="gallery__carousel">
+            <AnimatePresence mode="wait">
+              <motion.div
+                key={currentSlide}
+                className="gallery__slide"
+                initial={{ opacity: 0, x: 100 }}
+                animate={{ opacity: 1, x: 0 }}
+                exit={{ opacity: 0, x: -100 }}
+                transition={{ duration: 0.5, ease: 'easeInOut' }}
+              >
+                {getCurrentSlideImages().map((image) => (
+                  <motion.div
+                    key={image.id}
+                    className="gallery__item"
+                    whileHover={{ 
+                      scale: 1.05,
+                      y: -8,
+                      transition: { duration: 0.3 }
+                    }}
+                    onClick={() => openModal(image)}
+                  >
+                    <div className="gallery__image-container">
+                      {!loadedImages.has(image.id) && (
+                        <div className="gallery__image-placeholder">
+                          <div className="gallery__image-skeleton"></div>
+                        </div>
+                      )}
+                      <img 
+                        src={image.src} 
+                        alt={image.alt} 
+                        className={`gallery__image ${loadedImages.has(image.id) ? 'gallery__image--loaded' : ''}`}
+                        loading="lazy"
+                        onLoad={() => handleImageLoad(image.id)}
+                      />
+                    </div>
+                  </motion.div>
+                ))}
+              </motion.div>
+            </AnimatePresence>
+          </div>
+
+          {/* Slide Indicators */}
+          {totalSlides > 1 && (
+            <div className="gallery__indicators">
+              {Array.from({ length: totalSlides }, (_, index) => (
+                <button
+                  key={index}
+                  className={`gallery__indicator ${currentSlide === index ? 'gallery__indicator--active' : ''}`}
+                  onClick={() => setCurrentSlide(index)}
+                  aria-label={`Go to slide ${index + 1}`}
+                />
+              ))}
+            </div>
+          )}
+
+          {/* Slide Counter */}
+          <div className="gallery__counter">
+            {currentSlide + 1} / {totalSlides}
+          </div>
+        </div>
+
+        {/* Enhanced Modal */}
+        <AnimatePresence>
+          {selectedImage && (
+            <motion.div
+              className={`gallery__modal ${isFullscreen ? 'gallery__modal--fullscreen' : ''}`}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              onClick={closeModal}
+            >
+              <motion.div
+                className="gallery__modal-content"
+                initial={{ scale: 0.8, opacity: 0 }}
+                animate={{ scale: 1, opacity: 1 }}
+                exit={{ scale: 0.8, opacity: 0 }}
+                onClick={(e) => e.stopPropagation()}
+              >
+                {/* Modal Navigation */}
+                <button 
+                  className="gallery__modal-nav gallery__modal-nav--prev"
+                  onClick={() => navigateModal('prev')}
+                  aria-label="Previous image"
+                >
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                    <path d="M15 18L9 12L15 6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                  </svg>
+                </button>
+
+                <button 
+                  className="gallery__modal-nav gallery__modal-nav--next"
+                  onClick={() => navigateModal('next')}
+                  aria-label="Next image"
+                >
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                    <path d="M9 18L15 12L9 6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                  </svg>
+                </button>
+
+                {/* Modal Controls */}
+                <div className="gallery__modal-controls">
+                  <button 
+                    className="gallery__modal-close"
+                    onClick={closeModal}
+                    aria-label="Close modal"
+                  >
+                    ×
+                  </button>
+                  <button 
+                    className="gallery__modal-fullscreen"
+                    onClick={toggleFullscreen}
+                    aria-label={isFullscreen ? 'Exit fullscreen' : 'Enter fullscreen'}
+                  >
+                    {isFullscreen ? '⤓' : '⤢'}
+                  </button>
+                </div>
+
+                <img 
+                  src={selectedImage.src} 
+                  alt={selectedImage.alt} 
+                  className="gallery__modal-image"
+                />
+              </motion.div>
+            </motion.div>
+          )}
+        </AnimatePresence>
+      </div>
+    </section>
+  );
+} 
