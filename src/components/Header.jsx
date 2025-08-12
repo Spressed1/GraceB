@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Link as ScrollLink } from 'react-scroll';
 import { motion, AnimatePresence } from 'framer-motion';
-import logo from '../assets/logo.png';
+import logo from '../assets/logo1.png';
 import './Header.scss';
 
 const navLinks = [

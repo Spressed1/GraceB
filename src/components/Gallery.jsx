@@ -2,68 +2,25 @@ import React, { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import './Gallery.scss';
 
-// Placeholder images - you can replace these with your actual project photos
+// Import local gallery images
 const galleryImages = [
-  {
-    id: 1,
-    src: 'https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&w=600&q=80',
-    alt: 'Roofing project completed',
-  },
-  {
-    id: 2,
-    src: 'https://images.unsplash.com/photo-1586023492125-27b2c045efd7?auto=format&fit=crop&w=600&q=80',
-    alt: 'House extension work',
-  },
-  {
-    id: 3,
-    src: 'https://images.unsplash.com/photo-1621905251189-08b45d6a269e?auto=format&fit=crop&w=600&q=80',
-    alt: 'Electrical installation',
-  },
-  {
-    id: 4,
-    src: 'https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&w=600&q=80',
-    alt: 'Kitchen renovation',
-  },
-  {
-    id: 5,
-    src: 'https://images.unsplash.com/photo-1586023492125-27b2c045efd7?auto=format&fit=crop&w=600&q=80',
-    alt: 'Bathroom remodel',
-  },
-  {
-    id: 6,
-    src: 'https://images.unsplash.com/photo-1621905251189-08b45d6a269e?auto=format&fit=crop&w=600&q=80',
-    alt: 'Property maintenance work',
-  },
-  {
-    id: 7,
-    src: 'https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&w=600&q=80',
-    alt: 'Roof repair project',
-  },
-  {
-    id: 8,
-    src: 'https://images.unsplash.com/photo-1586023492125-27b2c045efd7?auto=format&fit=crop&w=600&q=80',
-    alt: 'Home extension completed',
-  },
-  {
-    id: 9,
-    src: 'https://images.unsplash.com/photo-1621905251189-08b45d6a269e?auto=format&fit=crop&w=600&q=80',
-    alt: 'Electrical upgrade work',
-  },
-  {
-    id: 10,
-    src: 'https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&w=600&q=80',
-    alt: 'Kitchen renovation completed',
-  },
-  {
-    id: 11,
-    src: 'https://images.unsplash.com/photo-1586023492125-27b2c045efd7?auto=format&fit=crop&w=600&q=80',
-    alt: 'Bathroom renovation project',
-  },
-  {
-    id: 12,
-    src: 'https://images.unsplash.com/photo-1621905251189-08b45d6a269e?auto=format&fit=crop&w=600&q=80',
-    alt: 'Property maintenance service',
-  }
+  { id: 1, src: '/src/assets/gallery/1.JPG', alt: 'Gallery image 1' },
+  { id: 2, src: '/src/assets/gallery/2.JPG', alt: 'Gallery image 2' },
+  { id: 3, src: '/src/assets/gallery/3.JPG', alt: 'Gallery image 3' },
+  { id: 4, src: '/src/assets/gallery/4.JPG', alt: 'Gallery image 4' },
+  { id: 5, src: '/src/assets/gallery/5.JPG', alt: 'Gallery image 5' },
+  { id: 6, src: '/src/assets/gallery/6.JPG', alt: 'Gallery image 6' },
+  { id: 7, src: '/src/assets/gallery/7.JPG', alt: 'Gallery image 7' },
+  { id: 8, src: '/src/assets/gallery/8.JPG', alt: 'Gallery image 8' },
+  { id: 9, src: '/src/assets/gallery/9.JPG', alt: 'Gallery image 9' },
+  { id: 10, src: '/src/assets/gallery/10.JPG', alt: 'Gallery image 10' },
+  { id: 11, src: '/src/assets/gallery/11.JPG', alt: 'Gallery image 11' },
+  { id: 12, src: '/src/assets/gallery/12.JPG', alt: 'Gallery image 12' },
+  { id: 13, src: '/src/assets/gallery/13.JPG', alt: 'Gallery image 13' },
+  { id: 14, src: '/src/assets/gallery/14.JPG', alt: 'Gallery image 14' },
+  { id: 15, src: '/src/assets/gallery/15.JPG', alt: 'Gallery image 15' },
+  { id: 16, src: '/src/assets/gallery/16.JPG', alt: 'Gallery image 16' },
+  { id: 17, src: '/src/assets/gallery/17.JPG', alt: 'Gallery image 17' },
 ];
 
 export default function Gallery() {
@@ -74,12 +31,24 @@ export default function Gallery() {
   const [touchStart, setTouchStart] = useState(null);
   const [touchEnd, setTouchEnd] = useState(null);
   const [loadedImages, setLoadedImages] = useState(new Set());
+  const [isMobile, setIsMobile] = useState(false);
   
   const carouselRef = useRef(null);
   const autoPlayInterval = useRef(null);
 
   const slidesPerView = 3;
   const totalSlides = Math.ceil(galleryImages.length / slidesPerView);
+
+  // Check if device is mobile
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth <= 768);
+    };
+    
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
 
   // Auto-play functionality
   useEffect(() => {
@@ -131,7 +100,7 @@ export default function Gallery() {
     return () => window.removeEventListener('keydown', handleKeyDown);
   }, [selectedImage, isFullscreen]);
 
-  // Touch/swipe functionality
+  // Enhanced touch/swipe functionality for mobile
   const handleTouchStart = (e) => {
     setTouchStart(e.targetTouches[0].clientX);
   };
@@ -152,6 +121,37 @@ export default function Gallery() {
     }
     if (isRightSwipe) {
       prevSlide();
+    }
+
+    setTouchStart(null);
+    setTouchEnd(null);
+  };
+
+  // Enhanced modal touch/swipe functionality
+  const handleModalTouchStart = (e) => {
+    if (isMobile) {
+      setTouchStart(e.targetTouches[0].clientX);
+    }
+  };
+
+  const handleModalTouchMove = (e) => {
+    if (isMobile) {
+      setTouchEnd(e.targetTouches[0].clientX);
+    }
+  };
+
+  const handleModalTouchEnd = () => {
+    if (!isMobile || !touchStart || !touchEnd) return;
+    
+    const distance = touchStart - touchEnd;
+    const isLeftSwipe = distance > 50;
+    const isRightSwipe = distance < -50;
+
+    if (isLeftSwipe) {
+      navigateModal('next');
+    }
+    if (isRightSwipe) {
+      navigateModal('prev');
     }
 
     setTouchStart(null);
@@ -222,8 +222,8 @@ export default function Gallery() {
           onMouseEnter={() => setIsAutoPlaying(false)}
           onMouseLeave={() => setIsAutoPlaying(true)}
         >
-          {/* Navigation Buttons */}
-          {totalSlides > 1 && (
+          {/* Navigation Buttons - Hidden on mobile */}
+          {totalSlides > 1 && !isMobile && (
             <>
               <button 
                 className="gallery__nav-btn gallery__nav-btn--prev"
@@ -263,8 +263,8 @@ export default function Gallery() {
                     key={image.id}
                     className="gallery__item"
                     whileHover={{ 
-                      scale: 1.05,
-                      y: -8,
+                      scale: isMobile ? 1 : 1.05,
+                      y: isMobile ? 0 : -8,
                       transition: { duration: 0.3 }
                     }}
                     onClick={() => openModal(image)}
@@ -318,6 +318,9 @@ export default function Gallery() {
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               onClick={closeModal}
+              onTouchStart={handleModalTouchStart}
+              onTouchMove={handleModalTouchMove}
+              onTouchEnd={handleModalTouchEnd}
             >
               <motion.div
                 className="gallery__modal-content"
@@ -326,26 +329,30 @@ export default function Gallery() {
                 exit={{ scale: 0.8, opacity: 0 }}
                 onClick={(e) => e.stopPropagation()}
               >
-                {/* Modal Navigation */}
-                <button 
-                  className="gallery__modal-nav gallery__modal-nav--prev"
-                  onClick={() => navigateModal('prev')}
-                  aria-label="Previous image"
-                >
-                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-                    <path d="M15 18L9 12L15 6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                  </svg>
-                </button>
+                {/* Modal Navigation - Hidden on mobile */}
+                {!isMobile && (
+                  <>
+                    <button 
+                      className="gallery__modal-nav gallery__modal-nav--prev"
+                      onClick={() => navigateModal('prev')}
+                      aria-label="Previous image"
+                    >
+                      <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                        <path d="M15 18L9 12L15 6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                      </svg>
+                    </button>
 
-                <button 
-                  className="gallery__modal-nav gallery__modal-nav--next"
-                  onClick={() => navigateModal('next')}
-                  aria-label="Next image"
-                >
-                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-                    <path d="M9 18L15 12L9 6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                  </svg>
-                </button>
+                    <button 
+                      className="gallery__modal-nav gallery__modal-nav--next"
+                      onClick={() => navigateModal('next')}
+                      aria-label="Next image"
+                    >
+                      <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                        <path d="M9 18L15 12L9 6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                      </svg>
+                    </button>
+                  </>
+                )}
 
                 {/* Modal Controls */}
                 <div className="gallery__modal-controls">
@@ -356,13 +363,16 @@ export default function Gallery() {
                   >
                     ×
                   </button>
-                  <button 
-                    className="gallery__modal-fullscreen"
-                    onClick={toggleFullscreen}
-                    aria-label={isFullscreen ? 'Exit fullscreen' : 'Enter fullscreen'}
-                  >
-                    {isFullscreen ? '⤓' : '⤢'}
-                  </button>
+                  {/* Fullscreen button - Hidden on mobile */}
+                  {!isMobile && (
+                    <button 
+                      className="gallery__modal-fullscreen"
+                      onClick={toggleFullscreen}
+                      aria-label={isFullscreen ? 'Exit fullscreen' : 'Enter fullscreen'}
+                    >
+                      {isFullscreen ? '⤓' : '⤢'}
+                    </button>
+                  )}
                 </div>
 
                 <img 

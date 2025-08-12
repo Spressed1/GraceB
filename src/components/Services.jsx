@@ -6,7 +6,7 @@ const serviceSections = [
   {
     title: 'Roofing',
     text: 'Complete roofing solutions including repairs, replacements, and maintenance. From minor fixes to full roof installations, we ensure your home stays protected with quality materials and expert craftsmanship.',
-    img: 'https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&w=600&q=80',
+    img: '/src/assets/gallery/9.JPG',
     alt: 'Roofing work in progress',
   },
   {

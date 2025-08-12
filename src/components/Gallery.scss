@@ -32,6 +32,10 @@
     margin-bottom: 2rem;
     touch-action: pan-y pinch-zoom;
     padding: 0 60px; // Add padding to prevent arrow overlap
+
+    @media (max-width: 768px) {
+      padding: 0 1rem; // Remove padding on mobile since arrows are hidden
+    }
   }
 
   &__carousel {
