@@ -32,7 +32,7 @@ export default function Hero() {
             Trusted Local Contractors in St Albans
           </motion.h1>
           <motion.p className="hero__desc" variants={itemVariants}>
-            Grace Contractors is your reliable partner for renovations, extensions, repairs, and all general building work in St Albans. Years of experience, quality workmanship, and a commitment to your satisfaction.
+            Grace Building Contractors is your reliable partner for renovations, extensions, repairs, and all general building work in St Albans. Years of experience, quality workmanship, and a commitment to your satisfaction.
           </motion.p>
         </motion.div>
       </div>

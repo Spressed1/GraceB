@@ -18,7 +18,7 @@ const serviceSections = [
   {
     title: 'Electrical Services',
     text: 'Professional electrical work including installations, upgrades, and repairs. Our certified electricians ensure all work meets safety standards while providing reliable, efficient electrical solutions for your home.',
-    img: 'https://images.unsplash.com/photo-1621905251189-08b45d6a269e?auto=format&fit=crop&w=600&q=80',
+    img: '/gallery/electricity.jpeg',
     alt: 'Electrical installation work',
   },
   {
@@ -63,7 +63,11 @@ export default function Services() {
                 whileInView="visible"
                 viewport={{ once: true, amount: 0.5 }}
               >
-                <img src={section.img} alt={section.alt} className="services__img" />
+                <img
+                  src={section.img}
+                  alt={section.alt}
+                  className={`services__img${section.title === 'Electrical Services' ? ' services__img--electric' : ''}`}
+                />
               </motion.div>
               <motion.div
                 className="services__text-wrap"

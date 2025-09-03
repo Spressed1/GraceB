@@ -80,6 +80,13 @@
   }
 }
 
+// Modifier: ensure specific images are fully visible without cropping
+// Electricity image: fill frame but bias the crop upward to keep head and arms
+.services__img--electric {
+  object-fit: cover;
+  object-position: 50% 25%; // center horizontally, 25% from top vertically
+}
+
 .services__text-wrap {
   display: flex;
   flex-direction: column;
