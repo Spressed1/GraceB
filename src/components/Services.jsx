@@ -4,28 +4,40 @@ import './Services.scss';
 
 const serviceSections = [
   {
-    title: 'Roofing',
-    text: 'Complete roofing solutions including repairs, replacements, and maintenance. From minor fixes to full roof installations, we ensure your home stays protected with quality materials and expert craftsmanship.',
+    title: 'New Roof Installations',
+    text: 'Expert installation of pitched and flat roofs using quality tiles, slates, and modern flat roofing systems for long-lasting protection and a tidy finish.',
+    img: '/gallery/13.JPG',
+    alt: 'New roof installation',
+  },
+  {
+    title: 'Roof Repairs',
+    text: 'From slipped tiles and storm damage to persistent leaks, we diagnose issues quickly and carry out durable repairs to protect your home.',
     img: '/gallery/9.JPG',
-    alt: 'Roofing work in progress',
+    alt: 'Roof repair in progress',
   },
   {
-    title: 'House Renovations & Extensions',
-    text: 'Transform your living space with comprehensive renovation services and custom extensions. We handle everything from kitchen and bathroom remodels to full house extensions, adding both space and value to your property.',
-    img: 'https://images.unsplash.com/photo-1586023492125-27b2c045efd7?auto=format&fit=crop&w=600&q=80',
-    alt: 'House extension construction',
+    title: 'Flat Roofing (EPDM & Felt)',
+    text: 'High-performance flat roofing systems, including EPDM rubber and torch-on felt, installed with care and guaranteed workmanship.',
+    img: '/gallery/12.JPG',
+    alt: 'Flat roofing installation',
   },
   {
-    title: 'Electrical Services',
-    text: 'Professional electrical work including installations, upgrades, and repairs. Our certified electricians ensure all work meets safety standards while providing reliable, efficient electrical solutions for your home.',
-    img: '/gallery/electricity.jpeg',
-    alt: 'Electrical installation work',
+    title: 'Guttering, Fascias & Soffits',
+    text: 'Supply and fit of uPVC or aluminium gutters, fascias and soffits. Keep rainwater flowing and improve kerb appeal.',
+    img: '/gallery/16.JPG',
+    alt: 'New gutters and fascias',
   },
   {
-    title: 'Property Maintenance & General Repairs',
-    text: 'Comprehensive maintenance and repair services to keep your property in top condition. From routine maintenance to emergency repairs, we provide reliable solutions for all your property care needs.',
-    img: 'https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&w=600&q=80',
-    alt: 'Property maintenance work',
+    title: 'Chimney Repairs & Leadwork',
+    text: 'Repointing, capping, flashing and leadwork to keep chimneys and roof junctions watertight and secure.',
+    img: '/gallery/11.JPG',
+    alt: 'Leadwork around chimney',
+  },
+  {
+    title: 'Emergency Roof Repairs',
+    text: 'Rapid response for urgent leaks and storm damage across St Albans and nearby areas. Temporary and permanent fixes available.',
+    img: '/gallery/17.JPG',
+    alt: 'Emergency roof repair',
   },
 ];
 
@@ -66,7 +78,7 @@ export default function Services() {
                 <img
                   src={section.img}
                   alt={section.alt}
-                  className={`services__img${section.title === 'Electrical Services' ? ' services__img--electric' : ''}`}
+                  className={"services__img"}
                 />
               </motion.div>
               <motion.div

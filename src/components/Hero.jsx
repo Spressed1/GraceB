@@ -29,10 +29,10 @@ export default function Hero() {
           viewport={{ once: true, amount: 0.7 }}
         >
           <motion.h1 className="hero__title" variants={itemVariants}>
-            Trusted Local Contractors in St Albans
+            Trusted Local Roofers in St Albans
           </motion.h1>
           <motion.p className="hero__desc" variants={itemVariants}>
-            Grace Building Contractors is your reliable partner for renovations, extensions, repairs, and all general building work in St Albans. Years of experience, quality workmanship, and a commitment to your satisfaction.
+            Three Brothers Roofing provides expert roof repairs, new roof installations, flat roofing, guttering and emergency leak fixes across St Albans and nearby areas. Quality materials, tidy workmanship, and reliable service.
           </motion.p>
         </motion.div>
       </div>

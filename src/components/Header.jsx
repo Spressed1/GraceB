@@ -46,7 +46,7 @@ export default function Header() {
         <div className="header__logo">
           <img 
             src={logo} 
-            alt="Grace Building Contractors" 
+            alt="Three Brothers Roofing" 
             className="header__logo-img"
           />
         </div>

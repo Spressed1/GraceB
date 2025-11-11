@@ -36,7 +36,7 @@ export default function Contact() {
           </motion.h2>
           
           <motion.div className="contact__details" variants={itemVariants}>
-            <div className="contact__company">Grace Contractors</div>
+            <div className="contact__company">Three Brothers Roofing</div>
             <div className="contact__address">
               <div>15 Nicholls Close</div>
               <div>Redbourn, St Albans AL3 7HZ</div>
