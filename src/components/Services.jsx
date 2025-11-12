@@ -36,7 +36,7 @@ const serviceSections = [
   {
     title: 'Emergency Roof Repairs',
     text: 'Rapid response for urgent leaks and storm damage across St Albans and nearby areas. Temporary and permanent fixes available.',
-    img: '/gallery/17.JPG',
+    img: '/gallery/12.JPG',
     alt: 'Emergency roof repair',
   },
 ];
