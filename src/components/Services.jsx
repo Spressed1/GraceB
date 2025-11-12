@@ -18,7 +18,7 @@ const serviceSections = [
   {
     title: 'Flat Roofing (EPDM & Felt)',
     text: 'High-performance flat roofing systems, including EPDM rubber and torch-on felt, installed with care and guaranteed workmanship.',
-    img: '/gallery/12.JPG',
+    img: '/gallery/8.JPG',
     alt: 'Flat roofing installation',
   },
   {
