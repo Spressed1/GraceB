@@ -20,7 +20,6 @@ const galleryImages = [
   { id: 14, src: '/gallery/14.JPG', alt: 'Gallery image 14' },
   { id: 15, src: '/gallery/15.JPG', alt: 'Gallery image 15' },
   { id: 16, src: '/gallery/16.JPG', alt: 'Gallery image 16' },
-  { id: 17, src: '/gallery/17.JPG', alt: 'Gallery image 17' },
 ];
 
 export default function Gallery() {
