@@ -18,7 +18,7 @@ const serviceSections = [
   {
     title: 'Flat Roofing (GRP Resin)',
     text: 'High-performance flat roofing systems with GRP Resin, installed with care and guaranteed workmanship.',
-    img: '/gallery/flat-roof.JPG',
+    img: '/gallery/flat-roof.jpg',
     alt: 'Flat roofing installation',
   },
   {
@@ -30,7 +30,7 @@ const serviceSections = [
   {
     title: 'Chimney Repairs & Leadwork',
     text: 'Repointing, capping, flashing and leadwork to keep chimneys and roof junctions watertight and secure.',
-    img: '/gallery/chimney.JPG',
+    img: '/gallery/chimney.jpg',
     alt: 'Leadwork around chimney',
   },
   {
