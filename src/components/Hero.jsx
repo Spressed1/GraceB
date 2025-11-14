@@ -32,7 +32,7 @@ export default function Hero() {
             Trusted Local Roofers in St Albans
           </motion.h1>
           <motion.p className="hero__desc" variants={itemVariants}>
-            Three Brothers Roofing provides expert roof repairs, new roof installations, flat roofing, guttering and emergency leak fixes across St Albans and nearby areas. Quality materials, tidy workmanship, and reliable service.
+            Alban Roofing provides expert roof repairs, new roof installations, flat roofing, guttering and emergency leak fixes across St Albans and nearby areas. Quality materials, tidy workmanship, and reliable service.
           </motion.p>
         </motion.div>
       </div>

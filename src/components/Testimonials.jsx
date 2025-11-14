@@ -4,7 +4,7 @@ import './Testimonials.scss';
 const testimonials = [
   {
     name: 'Sarah T.',
-    text: 'Three Brothers Roofing were professional, friendly, and did a fantastic job replacing our old roof. Highly recommended!',
+    text: 'Alban Roofing were professional, friendly, and did a fantastic job replacing our old roof. Highly recommended!',
     avatar: ''
   },
   {
@@ -14,7 +14,7 @@ const testimonials = [
   },
   {
     name: 'Helen P.',
-    text: 'We used Three Brothers for flat roofing and guttering. Excellent service and great value for money.',
+    text: 'We used Alban for flat roofing and guttering. Excellent service and great value for money.',
     avatar: ''
   },
 ];

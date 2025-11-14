@@ -13,7 +13,7 @@ export default function About() {
           />
         </div>
         <div className="about__side-text">
-          <h2 className="about__title">About Three Brothers Roofing</h2>
+          <h2 className="about__title">About Alban Roofing</h2>
           <p>
             We are a family-run roofing company serving St Albans and surrounding areas. From new pitched and flat roofs to leak repairs, guttering, fascias and soffits, our focus is long-lasting workmanship, clear communication and tidy jobs. With years of hands-on experience, we use quality materials and treat every home with care and respect.
           </p>
