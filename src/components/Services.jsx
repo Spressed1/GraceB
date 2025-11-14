@@ -16,9 +16,9 @@ const serviceSections = [
     alt: 'Roof repair in progress',
   },
   {
-    title: 'Flat Roofing (EPDM & Felt)',
-    text: 'High-performance flat roofing systems, including EPDM rubber and torch-on felt, installed with care and guaranteed workmanship.',
-    img: '/gallery/8.JPG',
+    title: 'Flat Roofing (GRP Resin)',
+    text: 'High-performance flat roofing systems with GRP Resin, installed with care and guaranteed workmanship.',
+    img: '/gallery/flat-roof.JPG',
     alt: 'Flat roofing installation',
   },
   {
@@ -30,7 +30,7 @@ const serviceSections = [
   {
     title: 'Chimney Repairs & Leadwork',
     text: 'Repointing, capping, flashing and leadwork to keep chimneys and roof junctions watertight and secure.',
-    img: '/gallery/11.JPG',
+    img: '/gallery/chimney.JPG',
     alt: 'Leadwork around chimney',
   },
   {

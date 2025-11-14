@@ -20,6 +20,12 @@ const galleryImages = [
   { id: 14, src: '/gallery/14.JPG', alt: 'Gallery image 14' },
   { id: 15, src: '/gallery/15.JPG', alt: 'Gallery image 15' },
   { id: 16, src: '/gallery/16.JPG', alt: 'Gallery image 16' },
+  { id: 17, src: '/gallery/17.JPG', alt: 'Gallery image 17' },
+  { id: 18, src: '/gallery/18.JPG', alt: 'Gallery image 18' },
+  { id: 19, src: '/gallery/19.JPG', alt: 'Gallery image 19' },
+  { id: 20, src: '/gallery/20.JPG', alt: 'Gallery image 20' },
+  { id: 21, src: '/gallery/flat-roof.JPG', alt: 'Gallery image 21' },
+  { id: 22, src: '/gallery/chimney.JPG', alt: 'Gallery image 20' },  
 ];
 
 export default function Gallery() {
